@@ -1,0 +1,18 @@
+﻿<button
+    class="blazor-button"
+@onclick="OnButtonClick">
+    @Text
+</button>
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback<string> OnClick { get; set; }
+
+    private async Task OnButtonClick()
+    {
+        await OnClick.InvokeAsync(Text);
+    }
+}

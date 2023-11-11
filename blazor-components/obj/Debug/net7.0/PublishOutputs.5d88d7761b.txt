@@ -1,0 +1,1 @@
+X:\React apps\blazor-comp-app\blazor-components\bin\Debug\net7.0\publish\web.config
