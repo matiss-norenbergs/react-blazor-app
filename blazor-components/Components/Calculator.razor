@@ -3,29 +3,29 @@
         <div class="name-wrapper">@Name</div>
         <div class="display">
             <span class="display-value">@GetEquation()</span>
-            <span class="display-value">@(ShowEquation ? Value1 : Value)</span>
+            <span class="display-value">@(Value)</span>
         </div>
         <div class="button-container">
-            <Button Text="" />
-            <Button Text="" />
-            <Button Text="C" OnClick="() => OnClearClick()" />
-            <Button Text="/" OnClick="() => OnOperationBtnClick(ECalcOperations.Divide)" />
+            <Button ClassName="operation" Text="" Disabled />
+            <Button ClassName="operation" Text="" Disabled />
+            <Button ClassName="operation" Text="C" OnClick="() => OnClearClick()" />
+            <Button ClassName="operation" Text="/" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Divide)" />
             <Button Text="7" OnClick="OnNumBtnClick" />
             <Button Text="8" OnClick="OnNumBtnClick" />
             <Button Text="9" OnClick="OnNumBtnClick" />
-            <Button Text="x" OnClick="() => OnOperationBtnClick(ECalcOperations.Multiply)" />
+            <Button ClassName="operation" Text="x" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Multiply)" />
             <Button Text="4" OnClick="OnNumBtnClick" />
             <Button Text="5" OnClick="OnNumBtnClick" />
             <Button Text="6" OnClick="OnNumBtnClick" />
-            <Button Text="-" OnClick="() => OnOperationBtnClick(ECalcOperations.Subtract)" />
+            <Button ClassName="operation" Text="-" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Subtract)" />
             <Button Text="1" OnClick="OnNumBtnClick" />
             <Button Text="2" OnClick="OnNumBtnClick" />
             <Button Text="3" OnClick="OnNumBtnClick" />
-            <Button Text="+" OnClick="() => OnOperationBtnClick(ECalcOperations.Add)" />
-            <Button Text="+/-" OnClick="() => OnOperationBtnClick(ECalcOperations.Alter)" />
+            <Button ClassName="operation" Text="+" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Add)" />
+            <Button Text="+/-" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Alter)" />
             <Button Text="0" OnClick="OnNumBtnClick" />
-            <Button Text="." OnClick="() => OnOperationBtnClick(ECalcOperations.Comma)" />
-            <Button Text="=" OnClick="() => OnOperationBtnClick(ECalcOperations.Equals)" />
+            <Button Text="." OnClick="() => OnOperationBtnClick(ECalculatorOperation.Comma)" />
+            <Button ClassName="operation" Text="=" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Equals)" />
         </div>
     </div>
 </section>
@@ -36,53 +36,23 @@
 
     public string Value { get; set; } = string.Empty;
 
-    public string Result { get; set; } = string.Empty;
-
     public decimal Value1 { get; set; } = 0;
 
     public decimal Value2 { get; set; } = 0;
 
-    public ECalcOperations Operation { get; set; } = ECalcOperations.None;
+    public ECalculatorOperation Operation { get; set; } = ECalculatorOperation.None;
 
-    public char OperationSymbol
-    {
-        get
-        {
-            return GetOperationSymbol();
-        }
-    }
-
-    public int OperationCount { get; set; } = 0;
+    public char OperationSymbol { get { return GetOperationSymbol(); } }
 
     public bool ShowEquation { get; set; } = false;
 
-    public bool ShowResult { get; set; } = false;
+    public bool? ShowResult { get; set; } = null;
 
-    public char GetOperationSymbol()
+    public List<EquationHistory> CalculatorHistory = new List<EquationHistory>();
+
+    private string GetEquation()
     {
-        char oper = ' ';
-        switch (Operation)
-        {
-            case ECalcOperations.Add:
-                oper = '+';
-                break;
-            case ECalcOperations.Subtract:
-                oper = '-';
-                break;
-            case ECalcOperations.Multiply:
-                oper = 'x';
-                break;
-            case ECalcOperations.Divide:
-                oper = '/';
-                break;
-        }
-
-        return oper;
-    }
-
-    public string GetEquation()
-    {
-        if (ShowResult)
+        if (ShowResult == true)
             return $"{Value1} {OperationSymbol} {Value2} =";
 
         if (ShowEquation)
@@ -91,75 +61,96 @@
         return "";
     }
 
-    public void OnNumBtnClick(string name)
+    private void OnNumBtnClick(string name)
     {
         Value += name;
     }
 
-    public void OnOperationBtnClick(ECalcOperations operation)
+    private void OnOperationBtnClick(ECalculatorOperation operation)
     {
+        decimal value = 0;
+
         switch (operation)
         {
-            case ECalcOperations.Alter:
+            case ECalculatorOperation.Alter:
 
                 break;
-            case ECalcOperations.Comma:
+            case ECalculatorOperation.Comma:
                 if (!Value.Contains('.'))
                     Value += ".";
                 break;
-            case ECalcOperations.Add:
-            case ECalcOperations.Subtract:
-            case ECalcOperations.Multiply:
-            case ECalcOperations.Divide:
-                Operation = operation;
+            case ECalculatorOperation.Add:
+            case ECalculatorOperation.Subtract:
+            case ECalculatorOperation.Multiply:
+            case ECalculatorOperation.Divide:
                 ShowEquation = true;
-                Value1 = decimal.Parse(Value);
+
+                if (ShowResult.HasValue && !ShowResult.Value)
+                {
+                    Value2 = decimal.TryParse(Value, out value) ? value : Value1;
+                    Value = CalculateResult();
+                }
+
+                Operation = operation;
+                Value1 = decimal.TryParse(Value, out value) ? value : 0;
+
+                ShowResult = false;
                 Value = string.Empty;
                 break;
-            case ECalcOperations.Equals:
-                Value2 = decimal.Parse(Value);
-                Result = CalculateResult();
+            case ECalculatorOperation.Equals:
+                Value2 = decimal.TryParse(Value, out value) ? value : Value1;
+                Value = CalculateResult();
+                ShowEquation = false;
                 ShowResult = true;
                 break;
         }
     }
 
-    public string CalculateResult()
+    private string CalculateResult()
     {
         decimal result = 0;
-
-        switch (Operation)
+        try
         {
-            case ECalcOperations.Add:
-                result = Value1 + Value2;
-                break;
-            case ECalcOperations.Subtract:
-                result = Value1 - Value2;
-                break;
-            case ECalcOperations.Multiply:
-                result = Value1 * Value2;
-                break;
-            case ECalcOperations.Divide:
-                result = Value1 / Value2;
-                break;
+            switch (Operation)
+            {
+                case ECalculatorOperation.Add:
+                    result = Value1 + Value2;
+                    break;
+                case ECalculatorOperation.Subtract:
+                    result = Value1 - Value2;
+                    break;
+                case ECalculatorOperation.Multiply:
+                    result = Value1 * Value2;
+                    break;
+                case ECalculatorOperation.Divide:
+                    result = Value1 / Value2;
+                    break;
+            }
+
+            CalculatorHistory.Add(new EquationHistory
+            {
+                Num1 = Value1,
+                Num2 = Value2,
+                CalculatorOperation = Operation
+            });
         }
-
-        Value1 = result;
-
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
         return result.ToString();
     }
 
-    public void OnClearClick()
+    private void OnClearClick()
     {
         Value = string.Empty;
-        Result = string.Empty;
         Value1 = 0;
         Value2 = 0;
         ShowEquation = false;
-        ShowResult = false;
+        ShowResult = null;
     }
 
-    public enum ECalcOperations
+    public enum ECalculatorOperation
     {
         None = 0,
         Alter = 1,
@@ -169,5 +160,39 @@
         Multiply = 5,
         Divide = 6,
         Equals = 7
+    }
+
+    private static Dictionary<ECalculatorOperation, char> CalculatorOperationSymbolCollection = new Dictionary<ECalculatorOperation, char>
+    {
+        { ECalculatorOperation.Add, '+' },
+        { ECalculatorOperation.Subtract, '-' },
+        { ECalculatorOperation.Multiply, 'x' },
+        { ECalculatorOperation.Divide, '/' }
+    };
+
+    private char GetOperationSymbol()
+    {
+        char oper = ' ';
+
+        switch (Operation)
+        {
+            case ECalculatorOperation.Add:
+            case ECalculatorOperation.Subtract:
+            case ECalculatorOperation.Multiply:
+            case ECalculatorOperation.Divide:
+                CalculatorOperationSymbolCollection.TryGetValue(Operation, out oper);
+                break;
+        }
+
+        return oper;
+    }
+
+    public class EquationHistory
+    {
+        public decimal Num1 { get; set; } = 0;
+
+        public decimal Num2 { get; set; } = 0;
+
+        public ECalculatorOperation CalculatorOperation = ECalculatorOperation.None;
     }
 }

@@ -1,6 +1,8 @@
 ﻿<button
-    class="blazor-button"
-@onclick="OnButtonClick">
+    class="blazor-button @ClassName"
+    @onclick="OnButtonClick"
+    disabled="@Disabled"
+>
     @Text
 </button>
 
@@ -10,6 +12,12 @@
 
     [Parameter]
     public EventCallback<string> OnClick { get; set; }
+
+    [Parameter]
+    public string ClassName { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
 
     private async Task OnButtonClick()
     {

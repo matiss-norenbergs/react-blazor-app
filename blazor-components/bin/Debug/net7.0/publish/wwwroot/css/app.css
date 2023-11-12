@@ -31,44 +31,86 @@ h1:focus {
     content: "An error has occurred."
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
 :root {
-    --background-color: #555;
+    --grey: #444;
+    --light-grey: #555;
+    --dark-grey: #333;
+    --darkest-grey: #222;
+
+    --text-color: #fff;
+    --font-family: 'Montserrat', sans-serif;
 }
 
-body {
-    background: var(--background-color);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
 }
 
-.display {
+.page-wrapper {
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: .5rem 1rem;
-    margin-bottom: .5rem;
-    border: 2px solid red;
-    color: #fff;
+    align-items: center;
+    justify-content: center;
 
-    .display-value {
-        height: .5rem;
-        line-height: .5rem;
-    }
-}
+    .calculator-wrapper {
+        width: 300px;
+        padding: .7rem;
+        background: var(--dark-grey);
 
-.button-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 25%);
+        .name-wrapper{
+            margin-bottom: .5rem;
+            font-size: 1.4rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .display {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: .5rem;
+            margin-bottom: .5rem;
+            font-size: 1.3rem;
+            color: var(--text-color);
+
+            .display-value {
+                height: 1.8rem;
+                line-height: 1.8rem;
+            }
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2px;
     
-    .blazor-button {
-        padding: .5rem;
-        border: 2px solid var(--background-color);
-        border-radius: 10px;
-        background: #333;
-        color: #fff;
-    }
-}
+            .blazor-button {
+                padding: 1rem;
+                border: none;
+                border-radius: 6px;
+                background: var(--light-grey);
+                color: var(--text-color);
 
-.blazor-button {
-    border: none;
-    font-size: 2.5rem;
-    background: #ddd;
+                &:hover {
+                    background: var(--grey);
+                }
+
+                &.operation {
+                    background: var(--grey);
+
+                    &:hover {
+                        background: var(--light-grey);
+                    }
+                }
+            }
+        }
+
+        .blazor-button {
+            font-size: 1.2rem;
+        }
+    }
 }

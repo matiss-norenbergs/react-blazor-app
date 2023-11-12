@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jJpDY7pMUcxjUF/As+nO1lNT53w8zGMUpU/ZR60L2ow=",
+  "Hash": "hTylRmho4FZ8IkOSR3LKGJV+eM+ox3FREywNUlCuJQg=",
   "Source": "blazor-components",
   "BasePath": "/",
   "Mode": "Root",
@@ -1326,6 +1326,40 @@
       "OriginalItemSpec": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\Microsoft.Extensions.Options.dll"
     },
     {
+      "Identity": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\compress\\vZC9gnBs.br",
+      "SourceId": "blazor-components",
+      "SourceType": "Computed",
+      "ContentRoot": "X:\\React apps\\blazor-comp-app\\blazor-components\\bin\\Debug\\net7.0\\publish\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Console.dll.br",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\System.Console.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "br",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\System.Console.dll"
+    },
+    {
+      "Identity": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\compress\\vZC9gnBs.gz",
+      "SourceId": "blazor-components",
+      "SourceType": "Computed",
+      "ContentRoot": "X:\\React apps\\blazor-comp-app\\blazor-components\\bin\\Debug\\net7.0\\publish\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Console.dll.gz",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\System.Console.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\System.Console.dll"
+    },
+    {
       "Identity": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\compress\\w1TSenjj.br",
       "SourceId": "blazor-components",
       "SourceType": "Computed",
@@ -1817,6 +1851,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "obj\\Debug\\net7.0\\linked\\System.ComponentModel.dll"
+    },
+    {
+      "Identity": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\System.Console.dll",
+      "SourceId": "blazor-components",
+      "SourceType": "Computed",
+      "ContentRoot": "X:\\React apps\\blazor-comp-app\\blazor-components\\bin\\Debug\\net7.0\\publish\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Console.dll",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "obj\\Debug\\net7.0\\linked\\System.Console.dll"
     },
     {
       "Identity": "X:\\React apps\\blazor-comp-app\\blazor-components\\obj\\Debug\\net7.0\\linked\\System.Linq.dll",
