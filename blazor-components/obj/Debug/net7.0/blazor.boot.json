@@ -199,7 +199,7 @@
       "mscorlib.dll": "sha256-8OmdVHzoN7xteY5ehp0L8R17I9QxFkH2lUVHFuslE0s=",
       "netstandard.dll": "sha256-urq+e2ZQXxmOWMRxTR92529HnUVu6+kyVnfF6SoLad8=",
       "System.Private.CoreLib.dll": "sha256-ixnF\/wVKLHZM1N0lfJufpZ41EC2LvvyiSqdW43h3Xew=",
-      "blazor-components.dll": "sha256-5y6GxjrC\/MXfKskhYtz+y2nTQiHbxR\/Ys00gWVvX4Cc="
+      "blazor-components.dll": "sha256-TBnnOymbFhGHMKO+bmthWpwPDR1Efo0y5SsPY1JH04A="
     },
     "extensions": null,
     "lazyAssembly": null,
@@ -207,7 +207,7 @@
       "_content\/Microsoft.AspNetCore.Components.CustomElements\/Microsoft.AspNetCore.Components.CustomElements.lib.module.js": "sha256-bB6hZ9QPC2l+lB0AzKdYjSui6\/bNKN3Dzn0Kwivil1I="
     },
     "pdb": {
-      "blazor-components.pdb": "sha256-KUUoVCTnx51rq\/wznCs+BehoDh4MvzLp1Mrn7\/AxxmU="
+      "blazor-components.pdb": "sha256-3RPk2ZdLUv2pYc4AtdxN3tHbT3dxZPA3FnxQ+qH3xeg="
     },
     "runtime": {
       "dotnet.7.0.12.glvik2oygt.js": "sha256-cPJgWy8SjMaYFeimGkYy23ls+rDZVmoC\/eMoHpqRc+4=",

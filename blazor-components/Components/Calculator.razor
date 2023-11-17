@@ -3,13 +3,13 @@
         <div class="name-wrapper">@Name</div>
         <div class="display">
             <span class="display-value">@GetEquation()</span>
-            <span class="display-value">@(Value)</span>
+            <span class="display-value">@($"{ValueNum:n0}")</span>
         </div>
         <div class="button-container">
             <Button ClassName="operation" Text="" Disabled />
             <Button ClassName="operation" Text="" Disabled />
             <Button ClassName="operation" Text="C" OnClick="() => OnClearClick()" />
-            <Button ClassName="operation" Text="/" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Divide)" />
+             <Button ClassName="operation" Text="÷" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Divide)" />
             <Button Text="7" OnClick="OnNumBtnClick" />
             <Button Text="8" OnClick="OnNumBtnClick" />
             <Button Text="9" OnClick="OnNumBtnClick" />
@@ -36,6 +36,8 @@
 
     public string Value { get; set; } = string.Empty;
 
+    public decimal ValueNum { get => decimal.TryParse(Value, out var valNum) ? valNum : 0; }
+
     public decimal Value1 { get; set; } = 0;
 
     public decimal Value2 { get; set; } = 0;
@@ -49,17 +51,6 @@
     public bool? ShowResult { get; set; } = null;
 
     public List<EquationHistory> CalculatorHistory = new List<EquationHistory>();
-
-    private string GetEquation()
-    {
-        if (ShowResult == true)
-            return $"{Value1} {OperationSymbol} {Value2} =";
-
-        if (ShowEquation)
-            return $"{Value1} {OperationSymbol}";
-
-        return "";
-    }
 
     private void OnNumBtnClick(string name)
     {
@@ -138,7 +129,7 @@
         {
             Console.WriteLine(ex);
         }
-        return result.ToString();
+        return $"{result:n0}";
     }
 
     private void OnClearClick()
@@ -148,6 +139,17 @@
         Value2 = 0;
         ShowEquation = false;
         ShowResult = null;
+    }
+
+    private string GetEquation()
+    {
+        if (ShowResult == true)
+            return $"{Value1} {OperationSymbol} {Value2} =";
+
+        if (ShowEquation)
+            return $"{Value1} {OperationSymbol}";
+
+        return "";
     }
 
     public enum ECalculatorOperation
@@ -167,7 +169,7 @@
         { ECalculatorOperation.Add, '+' },
         { ECalculatorOperation.Subtract, '-' },
         { ECalculatorOperation.Multiply, 'x' },
-        { ECalculatorOperation.Divide, '/' }
+        { ECalculatorOperation.Divide, '÷' }
     };
 
     private char GetOperationSymbol()
