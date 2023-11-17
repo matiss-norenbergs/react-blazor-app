@@ -17,6 +17,7 @@ src-tauri/target
 
 # Blazor
 blazor-components/bin
+blazor-components/obj
 
 # misc
 .DS_Store
