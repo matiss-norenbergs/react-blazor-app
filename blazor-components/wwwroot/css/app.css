@@ -34,8 +34,8 @@ h1:focus {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
 
 :root {
-    --grey: #444;
     --light-grey: #555;
+    --grey: #444;
     --dark-grey: #333;
     --darkest-grey: #222;
 
@@ -50,67 +50,81 @@ h1:focus {
     font-family: var(--font-family);
 }
 
-.page-wrapper {
-    height: 100vh;
+.calculator-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding: .7rem;
+    background: var(--darkest-grey);
 
-    .calculator-wrapper {
-        width: 300px;
-        padding: .7rem;
-        background: var(--dark-grey);
+    .name-wrapper{
+        margin-bottom: .5rem;
+        font-size: 1.4rem;
+        text-align: center;
+        color: var(--text-color);
+    }
 
-        .name-wrapper{
-            margin-bottom: .5rem;
-            font-size: 1.4rem;
-            text-align: center;
-            color: var(--text-color);
-        }
+    .display {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        flex: 1;
+        padding: .5rem;
+        margin-bottom: .5rem;
+        font-size: 1.3rem;
+        color: var(--text-color);
 
-        .display {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            padding: .5rem;
-            margin-bottom: .5rem;
-            font-size: 1.3rem;
-            color: var(--text-color);
+        .display-value {
+            height: 2rem;
 
-            .display-value {
-                height: 1.8rem;
-                line-height: 1.8rem;
+            &.large {
+                font-size: 4rem;
             }
         }
+    }
 
-        .button-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 2px;
+    .button-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 3px;
+        flex: 2;
     
-            .blazor-button {
-                padding: 1rem;
-                border: none;
-                border-radius: 6px;
-                background: var(--light-grey);
-                color: var(--text-color);
+        .blazor-button {
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            background: var(--grey);
+            color: var(--text-color);
+
+            &:hover {
+                background: var(--dark-grey);
+            }
+
+            &.operation {
+                background: var(--dark-grey);
 
                 &:hover {
                     background: var(--grey);
                 }
+            }
 
-                &.operation {
+            &.eQoperation {
+                background: var(--light-grey);
+
+                &:hover {
                     background: var(--grey);
-
-                    &:hover {
-                        background: var(--light-grey);
-                    }
                 }
             }
         }
+    }
 
-        .blazor-button {
-            font-size: 1.2rem;
+    .blazor-button {
+        font-size: 1.3rem;
+
+        &.button-disabled {
+            cursor: not-allowed;
+            filter: brightness(70%);
         }
     }
 }

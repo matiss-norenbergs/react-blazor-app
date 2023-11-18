@@ -1,36 +1,34 @@
-﻿<section class="page-wrapper">
-    <div class="calculator-wrapper">
-        <div class="name-wrapper">@Name</div>
-        <div class="display">
-            <span class="display-value">@GetEquation()</span>
-            <span class="display-value">@($"{ValueNum:n0}")</span>
-        </div>
-        <div class="button-container">
-            <Button ClassName="operation" Text="" Disabled />
-            <Button ClassName="operation" Text="" Disabled />
-            <Button ClassName="operation" Text="C" OnClick="() => OnClearClick()" />
-             <Button ClassName="operation" Text="÷" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Divide)" />
-            <Button Text="7" OnClick="OnNumBtnClick" />
-            <Button Text="8" OnClick="OnNumBtnClick" />
-            <Button Text="9" OnClick="OnNumBtnClick" />
-            <Button ClassName="operation" Text="x" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Multiply)" />
-            <Button Text="4" OnClick="OnNumBtnClick" />
-            <Button Text="5" OnClick="OnNumBtnClick" />
-            <Button Text="6" OnClick="OnNumBtnClick" />
-            <Button ClassName="operation" Text="-" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Subtract)" />
-            <Button Text="1" OnClick="OnNumBtnClick" />
-            <Button Text="2" OnClick="OnNumBtnClick" />
-            <Button Text="3" OnClick="OnNumBtnClick" />
-            <Button ClassName="operation" Text="+" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Add)" />
-            <Button Text="+/-" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Alter)" />
-            <Button Text="0" OnClick="OnNumBtnClick" />
-            <Button Text="." OnClick="() => OnOperationBtnClick(ECalculatorOperation.Comma)" />
-            <Button ClassName="operation" Text="=" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Equals)" />
-        </div>
+﻿<div class="calculator-wrapper">
+    <div class="name-wrapper">@Name</div>
+    <div class="display">
+        <span class="display-value">@GetEquation()</span>
+        <span class="display-value large">@(Value)</span>
     </div>
-</section>
+    <div class="button-container">
+        <Button ClassName="operation" Text="" Disabled />
+        <Button ClassName="operation" Text="C" OnClick="() => OnClearClick()" />
+        <Button ClassName="operation" Text="⌫" OnClick="() => OnDelBtnClick()" />
+        <Button ClassName="operation" Text="÷" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Divide)" />
+        <Button Text="7" OnClick="OnNumBtnClick" />
+        <Button Text="8" OnClick="OnNumBtnClick" />
+        <Button Text="9" OnClick="OnNumBtnClick" />
+        <Button ClassName="operation" Text="x" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Multiply)" />
+        <Button Text="4" OnClick="OnNumBtnClick" />
+        <Button Text="5" OnClick="OnNumBtnClick" />
+        <Button Text="6" OnClick="OnNumBtnClick" />
+        <Button ClassName="operation" Text="-" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Subtract)" />
+        <Button Text="1" OnClick="OnNumBtnClick" />
+        <Button Text="2" OnClick="OnNumBtnClick" />
+        <Button Text="3" OnClick="OnNumBtnClick" />
+        <Button ClassName="operation" Text="+" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Add)" />
+        <Button Disabled Text="+/-" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Alter)" />
+        <Button Text="0" OnClick="OnNumBtnClick" />
+        <Button Text="." OnClick="() => OnOperationBtnClick(ECalculatorOperation.Comma)" />
+        <Button ClassName="eQoperation" Text="=" OnClick="() => OnOperationBtnClick(ECalculatorOperation.Equals)" />
+    </div>
+</div>
 
-@code {
+ @code {
     [Parameter]
     public string Name { get; set; } = string.Empty;
 
@@ -54,7 +52,21 @@
 
     private void OnNumBtnClick(string name)
     {
+        if (ShowResult.HasValue && ShowResult.Value)
+        {
+            ShowResult = false;
+            OnClearClick();
+            Value += name;
+            return;
+        }
+
         Value += name;
+    }
+
+    private void OnDelBtnClick()
+    {
+        if (Value.Length > 0)
+            Value = Value.Substring(0, Value.Length - 1);
     }
 
     private void OnOperationBtnClick(ECalculatorOperation operation)
@@ -78,8 +90,16 @@
 
                 if (ShowResult.HasValue && !ShowResult.Value)
                 {
-                    Value2 = decimal.TryParse(Value, out value) ? value : Value1;
-                    Value = CalculateResult();
+                    if (!string.IsNullOrEmpty(Value))
+                    {
+                        Value2 = decimal.TryParse(Value, out value) ? value : Value1;
+                        Value = CalculateResult();
+                    }
+                    else
+                    {
+                        Operation = operation;
+                        break;
+                    }
                 }
 
                 Operation = operation;
@@ -129,7 +149,8 @@
         {
             Console.WriteLine(ex);
         }
-        return $"{result:n0}";
+        //return $"{result:n0}";
+        return result.ToString();
     }
 
     private void OnClearClick()
