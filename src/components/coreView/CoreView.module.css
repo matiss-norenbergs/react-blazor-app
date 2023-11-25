@@ -1,0 +1,29 @@
+:root {
+    --core-view-background: var(--white);
+}
+
+.core-view-wrapper {
+    background: var(--core-view-background);
+
+    .core-content {
+        margin-top: var(--header-height);
+        padding: 1rem 4rem;
+        min-height: calc(100vh - var(--header-height));
+
+        @media (max-width: 1080px) {
+            padding: 1rem var(--view-side-padding);
+        }
+
+        &.use-side-navigation {
+            margin-top: 0px;
+            margin-left: var(--header-side-width);
+            padding: 2rem;
+            width: calc(100vw - var(--header-side-width));
+            height: 100vh;
+        }
+    }
+    
+    &.dark-theme {
+        --core-view-background: var(--darkest-grey);
+    }
+}

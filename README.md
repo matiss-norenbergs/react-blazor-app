@@ -1,1 +1,6 @@
-# React with Blazor components
+# React app for messing around
+
+## Using
+###* React
+###* Blazor
+###* Tauri

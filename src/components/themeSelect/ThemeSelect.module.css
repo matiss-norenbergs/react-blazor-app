@@ -1,0 +1,23 @@
+:root {
+    --theme-select-color: var(--black);
+    --theme-select-primary: var(--primary);
+}
+
+.theme-wrapper {
+    user-select: none;
+    padding: .4rem;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    color: var(--theme-select-color);
+
+    &:hover {
+        cursor: pointer;
+        border: 1px solid var(--theme-select-primary);
+        color: var(--theme-select-primary);
+    }
+
+    &.dark-theme {
+        --theme-select-color: var(--white);
+        --theme-select-primary: var(--red);
+    }
+}

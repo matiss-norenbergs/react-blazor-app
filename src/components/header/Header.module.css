@@ -1,0 +1,94 @@
+:root {
+    --header-color: var(--text-color);
+    --header-background: var(--lightest-grey);
+    --header-primary: var(--primary);
+}
+
+.header-wrapper {
+    user-select: none;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--header-height);
+    padding: .5rem var(--view-side-padding);
+    background: var(--header-background);
+
+    .header-logo {
+        margin-right: 1rem;
+        height: 48px;
+
+        @media (max-width: 480px) {
+            height: 40px;
+        }
+    }
+
+    .header-contents {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        gap: 2rem;
+
+        .header-paths {
+            display: flex;
+
+            .link {
+                text-decoration: none;
+                padding: 0 .5rem;
+                font-size: var(--font-size);
+                color: var(--header-color);
+
+                &.active-link {
+                    color: var(--header-primary);
+                }
+
+                &:not(.active-link):hover {
+                    text-decoration: underline 1px var(--header-primary);
+                    text-underline-offset: 5px;
+                }
+            }
+        }
+    }
+
+    &.use-side-navigation {
+        flex-direction: column;
+        align-items: flex-start;
+        width: var(--header-side-width);
+        height: 100vh;
+        padding: .5rem var(--view-side-padding);
+
+        .header-contents {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: auto;
+            height: 100%;
+            gap: 0;
+            
+            .header-paths {
+                flex-direction: column;
+                margin-top: 2rem;
+
+                .link {
+                    padding: .2rem 0;
+                }
+            }
+        }
+    }
+
+    &.dark-theme {
+        --header-color: var(--white);
+        --header-background: var(--dark-grey);
+        --header-primary: var(--red);
+
+        .header-logo {
+            filter: opacity(.5) drop-shadow(0 0 0 white) brightness(300%);
+        }
+    }
+}
