@@ -1,6 +1,6 @@
 # React app for messing around
 
 ## Using
-###* React
-###* Blazor
-###* Tauri
+### * React
+### * Blazor
+### * Tauri
