@@ -7,8 +7,10 @@ import { NavLink } from "react-router-dom"
 
 import { ThemeContext } from "components/themeContext/ThemeContext"
 
-import ThemeSelect from "../themeSelect"
 import FaIcon from "../faIcon"
+import ThemeSwitch from "../themeSwitch"
+import NavigationSwitch from "../navigationSwitch"
+import FullscreenSwitch from "../fullscreenSwitch"
 
 import styles from "./Header.module.css"
 
@@ -19,18 +21,21 @@ const propTypes = {
     ]),
     paths: PropTypes.array,
     extraContent: PropTypes.node,
-    useSideNavigation: PropTypes.bool
+    useSideNavigation: PropTypes.bool,
+    allowToggleFullscreen: PropTypes.bool
 }
 const defaultProps = {
     paths: [],
-    useSideNavigation: false
+    useSideNavigation: false,
+    allowToggleFullscreen: false
 }
 
 const Header = ({
     logo,
     paths,
     extraContent,
-    useSideNavigation
+    useSideNavigation,
+    allowToggleFullscreen
 }) => {
 
     const { theme } = useContext(ThemeContext)
@@ -82,7 +87,13 @@ const Header = ({
                     </nav>
                 )}
                 {extraContent}
-                <ThemeSelect />
+                <div className={styles["header-settings"]}>
+                    <ThemeSwitch className={styles["setting"]} />
+                    <NavigationSwitch className={styles["setting"]} />
+                    {allowToggleFullscreen && (
+                        <FullscreenSwitch className={styles["setting"]} />
+                    )}
+                </div>
             </div>
         </header>
     )

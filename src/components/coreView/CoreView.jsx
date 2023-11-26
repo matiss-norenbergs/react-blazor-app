@@ -5,8 +5,7 @@ import { useCallback, useState } from 'react'
 
 import { defaultTheme, localStorageConstants } from "helpers/constants"
 
-import { ThemeContext } from "components/themeContext/ThemeContext"
-
+import ThemeContext from "../themeContext"
 import Header from "../header"
 import Footer from "../footer"
 
@@ -20,11 +19,10 @@ const propTypes = {
     ]),
     hideFooter: PropTypes.bool,
     extraHeaderContent: PropTypes.node,
-    useSideNavigation: PropTypes.bool
+    allowToggleFullscreen: PropTypes.bool
 }
 const defaultProps = {
-    routes: [],
-    useSideNavigation: false
+    routes: []
 }
 
 const CoreView = ({
@@ -32,14 +30,19 @@ const CoreView = ({
     logo: headerLogo,
     hideFooter,
     extraHeaderContent,
-    useSideNavigation
+    allowToggleFullscreen
 }) => {
 
     const [theme, setTheme] = useState(localStorage.getItem(localStorageConstants.theme) || defaultTheme)
+    const [useSideNavigation, setUseSideNavigation] = useState(true)
 
     const setActiveTheme = useCallback((newTheme) => {
         localStorage.setItem(localStorageConstants.theme, newTheme)
         setTheme(newTheme)
+    }, [])
+
+    const setActiveNavPostion = useCallback(() => {
+        setUseSideNavigation(prevState => !prevState)
     }, [])
 
     const headerPaths = routes.filter(({ menuHidden }) => !menuHidden).map(({ path, title, icon }) => ({
@@ -49,7 +52,12 @@ const CoreView = ({
     }))
 
     return (
-        <ThemeContext.Provider value={{ theme, setActiveTheme }}>
+        <ThemeContext.Provider value={{
+            theme,
+            setActiveTheme,
+            useSideNavigation,
+            setActiveNavPostion
+        }}>
             <div className={classNames(
                 styles["core-view-wrapper"],
                 styles[theme],
@@ -60,6 +68,7 @@ const CoreView = ({
                         logo={headerLogo}
                         extraContent={extraHeaderContent}
                         useSideNavigation={useSideNavigation}
+                        allowToggleFullscreen={allowToggleFullscreen}
                     />
                     <div className={classNames(
                         styles["core-content"],

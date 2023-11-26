@@ -3,8 +3,9 @@ import mnIcon from "assets/images/mnIcon.svg"
 import CoreView from "components/coreView"
 
 import Home from "pages/home"
+import Components from "pages/components"
 import Calculator from "pages/calculator"
-
+// eslint-disable-next-line
 import styles from "./App.module.css"
 
 const apps = [
@@ -14,6 +15,13 @@ const apps = [
         icon: "",
         menuHidden: false,
         element: Home
+    },
+    {
+        path: "/components",
+        title: "Components",
+        icon: "",
+        menuHidden: false,
+        element: Components
     },
     {
         path: "/calculator",
@@ -30,7 +38,7 @@ function App() {
             logo={mnIcon}
             routes={apps}
             hideFooter
-            useSideNavigation
+            //allowToggleFullscreen
         />
     )
 }

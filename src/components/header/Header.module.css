@@ -54,6 +54,24 @@
                 }
             }
         }
+
+        .header-settings {
+            display: flex;
+
+            .setting {
+                user-select: none;
+                padding: .4rem;
+                border-radius: 50%;
+                border: 1px solid transparent;
+                color: var(--header-color);
+
+                &:hover {
+                    cursor: pointer;
+                    border: 1px solid var(--header-primary);
+                    color: var(--header-primary);
+                }
+            }
+        }
     }
 
     &.use-side-navigation {
@@ -67,7 +85,6 @@
             flex-direction: column;
             align-items: flex-start;
             justify-content: space-between;
-            width: auto;
             height: 100%;
             gap: 0;
             
@@ -78,6 +95,11 @@
                 .link {
                     padding: .2rem 0;
                 }
+            }
+
+            .header-settings {
+                width: 100%;
+                justify-content: space-between;
             }
         }
     }

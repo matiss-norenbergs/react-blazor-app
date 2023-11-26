@@ -2,8 +2,7 @@ import PropTypes from "prop-types"
 import classNames from "classnames"
 import { useContext } from "react"
 
-import { ThemeContext } from "components/themeContext/ThemeContext"
-
+import ThemeContext from "../themeContext"
 import FaIcon from "../faIcon"
 
 import styles from "./Button.module.css"

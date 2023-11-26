@@ -1,15 +1,19 @@
-import classNames from "classnames"
+import PropTypes from "prop-types"
 import { useCallback, useContext, useEffect } from "react"
 
-import { ThemeContext } from "components/themeContext/ThemeContext"
 import { localStorageConstants, themes } from "helpers/constants"
 import useThemeDetector from "hooks/useThemeDetector"
 
+import ThemeContext from "../themeContext"
 import FaIcon from "../faIcon"
+// eslint-disable-next-line
+import styles from "./ThemeSwitch.module.css"
 
-import styles from "./ThemeSelect.module.css"
+const propTypes = {
+    className: PropTypes.string
+}
 
-const ThemeSelect = () => {
+const ThemeSelect = ({ className }) => {
 
     const { theme, setActiveTheme } = useContext(ThemeContext)
     const isBrowserInDarkMode = useThemeDetector()
@@ -36,10 +40,7 @@ const ThemeSelect = () => {
 
     return (
         <span
-            className={classNames(
-                styles["theme-wrapper"],
-                styles[theme]
-            )}
+            className={className}
             onClick={onThemeChange}
         >
             <FaIcon
@@ -49,5 +50,6 @@ const ThemeSelect = () => {
         </span>
     )
 }
+ThemeSelect.propTypes = propTypes
 
 export default ThemeSelect
