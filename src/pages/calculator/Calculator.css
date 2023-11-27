@@ -1,12 +1,12 @@
 :root {
-    --max-height: 100vh - var(--header-height);
+    --max-height: calc(100vh - var(--header-height) - var(--view-side-padding));
     --calculator-text-color: var(--white);
 }
 
 .calculator-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: var(--max-height);
     width: 100%;
     padding: .7rem;
     background: var(--darkest-grey);

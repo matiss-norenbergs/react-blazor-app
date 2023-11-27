@@ -1,0 +1,91 @@
+:root {
+    --theme-switch-background: var(--white);
+    --theme-switch-color: var(--black);
+}
+
+.theme-dropdown {
+    position: relative;
+    display: inline-block;
+
+    .theme-dropdown-target {
+        display: flex;
+        align-items: center;
+    }
+
+    .theme-dropdown-content {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        background: var(--theme-switch-background);
+        border-radius: 15px;
+
+        .theme-setting-content {
+            position: relative;
+
+            .theme-option {
+                display: block;
+            }
+
+            .theme-setting-label {
+                display: none;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: -1;
+                padding: .4rem .5rem;
+                padding-left: 1rem;
+                width: max-content;
+                font-size: var(--font-size);
+                transform: translateX(90%);
+                background: var(--theme-switch-background);
+                color: var(--theme-switch-color);
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            &:hover {
+                .theme-setting-label {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .theme-dropdown-content {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
+
+    &.dark-theme {
+        --theme-switch-background: var(--darkest-grey);
+        --theme-switch-color: var(--white);
+    }
+
+    &.use-top-navigation {
+        .theme-dropdown-content {
+            top: 0;
+            bottom: initial;
+
+            .theme-setting-label {
+                top: 0;
+                left: 0;
+                right: initial;
+                padding: .4rem .5rem;
+                padding-right: 1rem;
+                transform: translateX(-90%);
+                border-radius: 0;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+        }
+
+        &:hover {
+            .theme-dropdown-content {
+                flex-direction: column;
+            }
+        }
+    }
+}

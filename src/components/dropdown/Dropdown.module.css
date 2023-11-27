@@ -1,0 +1,28 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: var(--transparent);
+    width: max-content;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    padding: .5rem 1rem;
+    background: var(--background);
+}
+
+.dropdown-item:hover {
+    cursor: pointer;
+    filter: brightness(120%);
+}

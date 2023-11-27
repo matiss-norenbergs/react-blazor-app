@@ -5,8 +5,7 @@ import { isElement, isString } from "lodash"
 import { Image } from "antd"
 import { NavLink } from "react-router-dom"
 
-import { ThemeContext } from "components/themeContext/ThemeContext"
-
+import ThemeContext from "../themeContext"
 import FaIcon from "../faIcon"
 import ThemeSwitch from "../themeSwitch"
 import NavigationSwitch from "../navigationSwitch"
@@ -37,7 +36,6 @@ const Header = ({
     useSideNavigation,
     allowToggleFullscreen
 }) => {
-
     const { theme } = useContext(ThemeContext)
 
     let headerLogo = null
@@ -88,7 +86,11 @@ const Header = ({
                 )}
                 {extraContent}
                 <div className={styles["header-settings"]}>
-                    <ThemeSwitch className={styles["setting"]} />
+                    <ThemeSwitch
+                        className={styles["setting"]}
+                        useThemeSelector
+                        useSideNavigation={useSideNavigation}
+                    />
                     <NavigationSwitch className={styles["setting"]} />
                     {allowToggleFullscreen && (
                         <FullscreenSwitch className={styles["setting"]} />

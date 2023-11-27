@@ -1,0 +1,30 @@
+.menu-wrapper {
+    position: relative;
+    display: block;
+    height: fit-content;
+    width: fit-content;
+}
+
+.menu-content {
+    z-index: 9999;
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    background: var(--background);
+}
+
+.position-left {
+    left: 100%;
+}
+
+.position-right {
+    right: 100%;
+}
+
+.menu-item {
+    cursor: pointer;
+    width: fit-content;
+    padding: .3rem .5rem;
+}
