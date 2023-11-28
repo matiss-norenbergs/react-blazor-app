@@ -1,9 +1,7 @@
-:root {
-    --theme-switch-background: var(--white);
-    --theme-switch-color: var(--black);
-}
-
 .theme-dropdown {
+    --theme-switch-background: var(--light-theme-background);
+    --theme-switch-color: var(--light-theme-color);
+
     position: relative;
     display: inline-block;
 
@@ -44,7 +42,7 @@
                 border-bottom-right-radius: 15px;
             }
 
-            &:hover {
+            &:hover:not(:has(.theme-setting-label:hover)) {
                 .theme-setting-label {
                     display: block;
                 }
@@ -57,11 +55,6 @@
             display: flex;
             flex-direction: column-reverse;
         }
-    }
-
-    &.dark-theme {
-        --theme-switch-background: var(--darkest-grey);
-        --theme-switch-color: var(--white);
     }
 
     &.use-top-navigation {
@@ -86,6 +79,30 @@
             .theme-dropdown-content {
                 flex-direction: column;
             }
+        }
+    }
+
+    &.dark-theme {
+        --theme-switch-background: var(--dark-theme-background);
+        --theme-switch-color: var(--dark-theme-color);
+    }
+
+    &.custom-theme {
+        --theme-switch-background: var(--custom-theme-background);
+        --theme-switch-color: var(--custom-theme-color);
+    }
+}
+
+.custom-color-table {
+    .custom-color-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .3rem 0;
+
+        .custom-color-item-label {
+            display: inline-block;
+            min-width: 200px;
         }
     }
 }

@@ -1,0 +1,64 @@
+.modal-wrapper[open] {
+    --modal-background: var(--light-theme-background);
+    --modal-color: var(--light-theme-color);
+    --modal-primary: var(--light-theme-primary);
+    --modal-border-color: var(--light-theme-background-2);
+    
+    position: fixed;
+    display: grid;
+    z-index: 10;
+    inset: 0;
+    margin: auto;
+    padding: .5rem 1rem;
+    background: var(--modal-background);
+    color: var(--modal-color);
+    border: 1px solid var(--modal-border-color);
+
+    .modal-header {
+        user-select: none;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .modal-close-button {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            font-size: 2.4em;
+            
+            &:hover {
+                color: var(--modal-primary);
+            }
+        }
+    }
+
+    .modal-content {
+        font-size: var(--font-size);
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+
+        .modal-footer-buttons {
+            display: grid;
+            grid-auto-flow: column;
+            gap: .5rem;
+        }
+    }
+
+    &.dark-theme {
+        --modal-background: var(--dark-theme-background);
+        --modal-color: var(--dark-theme-color);
+        --modal-primary: var(--dark-theme-primary);
+        --modal-border-color: var(--dark-theme-background-2);
+    }
+
+    &.custom-theme {
+        --modal-background: var(--custom-theme-background);
+        --modal-color: var(--custom-theme-color);
+        --modal-primary: var(--custom-theme-primary);
+        --modal-border-color: var(--custom-theme-background-2);
+    }
+}

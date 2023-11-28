@@ -17,6 +17,24 @@
     --background-color: var(--white);
     --primary: var(--prime-blue);
 
+    /* Light */
+    --light-theme-background: var(--white);
+    --light-theme-background-2: var(--lightest-grey);
+    --light-theme-color: var(--black);
+    --light-theme-primary: var(--prime-blue);
+
+    /* Dark */
+    --dark-theme-background: var(--darkest-grey);
+    --dark-theme-background-2: var(--dark-grey);
+    --dark-theme-color: var(--white);
+    --dark-theme-primary: var(--red);
+
+    /* Custom */
+    --custom-theme-background: var(--darkest-grey);
+    --custom-theme-background-2: var(--dark-grey);
+    --custom-theme-color: var(--white);
+    --custom-theme-primary: var(--red);
+
     --font-family: 'Montserrat', sans-serif;
     
     --font-size: 14px;

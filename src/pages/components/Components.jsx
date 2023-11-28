@@ -34,7 +34,9 @@ const Components = () => {
                     </Button>
                 </Button.Group>
             </div>
-            <Input />
+            <div>
+                <Input />
+            </div>
         </div>
     )
 }

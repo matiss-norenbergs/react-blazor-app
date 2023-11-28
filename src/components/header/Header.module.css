@@ -1,10 +1,8 @@
-:root {
-    --header-color: var(--text-color);
-    --header-background: var(--lightest-grey);
-    --header-primary: var(--primary);
-}
-
 .header-wrapper {
+    --header-background: var(--light-theme-background-2);
+    --header-color: var(--light-theme-color);
+    --header-primary: var(--light-theme-primary);
+
     user-select: none;
     z-index: 1;
     position: fixed;
@@ -105,12 +103,22 @@
     }
 
     &.dark-theme {
-        --header-color: var(--white);
-        --header-background: var(--dark-grey);
-        --header-primary: var(--red);
+        --header-background: var(--dark-theme-background-2);
+        --header-color: var(--dark-theme-color);
+        --header-primary: var(--dark-theme-primary);
 
         .header-logo {
             filter: opacity(.5) drop-shadow(0 0 0 white) brightness(300%);
+        }
+    }
+
+    &.custom-theme {
+        --header-background: var(--custom-theme-background-2);
+        --header-color: var(--custom-theme-color);
+        --header-primary: var(--custom-theme-primary);
+
+        .header-logo {
+            filter: opacity(.5) drop-shadow(0 0 0 var(--header-primary)) brightness(300%);
         }
     }
 }

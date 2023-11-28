@@ -1,8 +1,6 @@
-:root {
-    --core-view-background: var(--white);
-}
-
 .core-view-wrapper {
+    --core-view-background: var(--light-theme-background);
+
     background: var(--core-view-background);
 
     .core-content {
@@ -20,6 +18,10 @@
     }
     
     &.dark-theme {
-        --core-view-background: var(--darkest-grey);
+        --core-view-background: var(--dark-theme-background);
+    }
+
+    &.custom-theme {
+        --core-view-background: var(--custom-theme-background);
     }
 }

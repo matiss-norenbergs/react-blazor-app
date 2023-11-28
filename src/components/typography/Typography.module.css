@@ -1,12 +1,14 @@
-:root {
-    --typography-color: var(--text-color);
-}
-
 .typography {
+    --typography-color: var(--light-theme-color);
+
     font-family: var(--font-family);
     color: var(--typography-color) !important;
 
     &.dark-theme {
-        --typography-color: var(--white);
+        --typography-color: var(--dark-theme-color);
+    }
+
+    &.custom-theme {
+        --typography-color: var(--custom-theme-color);
     }
 }

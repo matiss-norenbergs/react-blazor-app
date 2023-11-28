@@ -1,12 +1,10 @@
-:root {
-    --button-border: 1px;
-    --button-color: var(--text-color);
-    --button-background: var(--background-color);
-    --button-primary: var(--primary);
-    --button-brightness-disabled: 80%;
-}
-
 .button-wrapper {
+    --button-border: 1px;
+    --button-background: var(--light-theme-background-2);
+    --button-color: var(--light-theme-color);
+    --button-primary: var(--light-theme-primary);
+    --button-brightness-disabled: 80%;
+
     user-select: none;
     padding: .3rem .5rem;
     border-radius: var(--border-radius);
@@ -42,10 +40,16 @@
     }
 
     &.dark-theme {
-        --button-color: var(--white);
-        --button-background: var(--grey);
-        --button-primary: var(--red);
+        --button-background: var(--dark-theme-background-2);
+        --button-color: var(--dark-theme-color);
+        --button-primary: var(--dark-theme-primary);
         --button-brightness-disabled: 60%;
+    }
+
+    &.custom-theme {
+        --button-background: var(--custom-theme-background-2);
+        --button-color: var(--custom-theme-color);
+        --button-primary: var(--custom-theme-primary);
     }
 }
 
