@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import classNames from "classnames"
-import { useCallback, useContext, useImperativeHandle, useRef, useState, forwardRef } from "react"
+import { useCallback, useContext, useImperativeHandle, useRef, useState, forwardRef, useEffect } from "react"
 
 import ThemeContext from "../themeContext"
 
@@ -27,6 +27,10 @@ const InputColor = forwardRef(({
     useImperativeHandle(ref, () => ({
         value: inputValue
     }), [inputValue])
+
+    useEffect(() => {
+        setInputValue(rest.defaultValue)
+    }, [rest.defaultValue])
 
     return (
         <input

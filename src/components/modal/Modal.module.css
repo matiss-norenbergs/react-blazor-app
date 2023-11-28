@@ -62,3 +62,7 @@
         --modal-border-color: var(--custom-theme-background-2);
     }
 }
+
+.modal-wrapper[open]::backdrop {
+    background: rgba(0, 0, 0, 0.2);
+}

@@ -1,5 +1,5 @@
 :global(.font-awesome-icon) {
-    color: var(--text-color);
+    color: var(--black);
 }
 
 .icon-padded {

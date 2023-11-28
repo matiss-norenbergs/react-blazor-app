@@ -12,10 +12,6 @@
     --prime-blue: #1677ff;
     --red: #cc0000;
     --dark-red: #990000;
-    
-    --text-color: var(--black);
-    --background-color: var(--white);
-    --primary: var(--prime-blue);
 
     /* Light */
     --light-theme-background: var(--white);

@@ -8,12 +8,8 @@ import './index.css'
 
 document.addEventListener('DOMContentLoaded', () => {
     invoke('close_splashscreen')
-        .then(response => {
-            console.log("RES", response)
-        })
-        .catch(error => {
-            console.log("ERROR", error)
-        })
+        .then(() => null)
+        .catch(() => null)
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

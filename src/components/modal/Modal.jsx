@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import classNames from "classnames"
-import { useContext, useCallback, useEffect, useRef, forwardRef, useImperativeHandle } from "react"
+import { useContext, useCallback, useEffect, useRef, forwardRef, useImperativeHandle, cloneElement, useState } from "react"
 
 import Typography from "../typography"
 import ThemeContext from "../themeContext"
@@ -46,25 +46,37 @@ const Modal = forwardRef(({
     onConfirm,
     component
 }, ref) => {
+    const [isComponentMounted, setIsComponentMounted] = useState(false)
+
     const { theme } = useContext(ThemeContext)
     const modalElementRef = useRef(null)
+    const modalComponentRef = useRef(null)
 
     const handleOpenClick = useCallback(() => {
+        setIsComponentMounted(true)
         modalElementRef.current?.showModal()
     }, [])
 
     const handleCloseClick = useCallback(() => {
+        setIsComponentMounted(false)
         modalElementRef.current?.close()
     }, [])
 
     const handleConfirmBtnClick = useCallback(() => {
-        if (onConfirm) {
-            onConfirm()
+        if (modalComponentRef.current?.save) {
+            modalComponentRef.current?.save()
                 ?.then(() => {
                     handleCloseClick()
+
+                    if (onConfirm) {
+                        onConfirm()
+                    }
                 })
+                ?.catch(() => null)
+        } else {
+            handleCloseClick()
         }
-    }, [onConfirm, handleCloseClick])
+    }, [handleCloseClick, onConfirm])
 
     useImperativeHandle(ref, () => ({
         open: handleOpenClick,
@@ -78,6 +90,13 @@ const Modal = forwardRef(({
             handleCloseClick()
         }
     }, [open, handleOpenClick, handleCloseClick])
+
+    const modalComponent = isComponentMounted ? cloneElement(
+        component,
+        {
+            ref: modalComponentRef
+        }
+    ) : null
 
     return (
         <dialog
@@ -103,7 +122,7 @@ const Modal = forwardRef(({
                 </span>
             </header>
             <div className={styles["modal-content"]}>
-                {component}
+                {modalComponent}
             </div>
             <footer className={styles["modal-footer"]}>
                 <div className={styles["modal-footer-buttons"]}>

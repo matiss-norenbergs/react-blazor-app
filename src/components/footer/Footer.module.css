@@ -5,6 +5,6 @@
     height: var(--footer-height);
 
     .text {
-        color: var(--text-color);
+        color: var(--black);
     }
 }
