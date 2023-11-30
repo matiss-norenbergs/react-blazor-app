@@ -5,6 +5,7 @@
     height: 2rem;
     border: 2px solid var(--input-color-primary);
     border-radius: 50%;
+    transition: var(--animate-colors);
 
     &::-webkit-color-swatch-wrapper {
         padding: 0;

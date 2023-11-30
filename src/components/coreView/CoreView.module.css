@@ -2,6 +2,7 @@
     --core-view-background: var(--light-theme-background);
 
     background: var(--core-view-background);
+    transition: var(--animate-colors);
 
     .core-content {
         margin-top: var(--header-height);

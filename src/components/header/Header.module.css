@@ -15,6 +15,7 @@
     height: var(--header-height);
     padding: .5rem var(--view-side-padding);
     background: var(--header-background);
+    transition: var(--animate-colors);
 
     .header-logo {
         margin-right: 1rem;

@@ -10,9 +10,10 @@
     border-radius: var(--border-radius);
     font-family: var(--font-family);
 
-    border: var(--button-border) solid var(--lighter-grey);
+    border: var(--button-border) solid var(--light-grey);
     background: var(--button-background);
     color: var(--button-color);
+    transition: var(--animate-colors);
 
     &:hover {
         cursor: pointer;

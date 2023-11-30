@@ -47,26 +47,26 @@
             padding: 1rem;
             border: none;
             border-radius: 6px;
-            background: var(--grey);
+            background: var(--dark-grey);
             color: var(--calculator-text-color);
 
             &:hover {
-                background: var(--dark-grey);
+                background: var(--darker-grey);
             }
 
             &.operation {
-                background: var(--dark-grey);
+                background: var(--darker-grey);
 
                 &:hover {
-                    background: var(--grey);
+                    background: var(--dark-grey);
                 }
             }
 
             &.eQoperation {
-                background: var(--light-grey);
+                background: var(--grey);
 
                 &:hover {
-                    background: var(--grey);
+                    background: var(--dark-grey);
                 }
             }
         }

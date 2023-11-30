@@ -4,6 +4,7 @@
 
     position: relative;
     display: inline-block;
+    transition: var(--animate-colors);
 
     .theme-dropdown-target {
         display: flex;

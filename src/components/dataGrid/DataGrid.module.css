@@ -12,6 +12,8 @@
     --data-grid-primary: var(--light-theme-primary);
     --data-grid-primary-rgb: var(--light-theme-primary-rgb);
 
+    transition: var(--animate-colors);
+
     &.dark-theme {
         --data-grid-background: var(--dark-theme-background);
         --data-grid-background-2: var(--dark-theme-background-2);
@@ -95,6 +97,15 @@
     --ag-card-shadow: 0 1px 4px 1px rgba(186, 191, 199, 0.4);
     --ag-popup-shadow: var(--ag-card-shadow);
     --ag-side-bar-panel-width: 250px;
+
+    width: 100%;
+    height: calc(100vh - 2rem - var(--header-height));
+}
+
+.data-grid-wrapper {
+    .data-grid-toolbar {
+        padding-bottom: .5rem;
+    }
 }
 
 .ag-theme-alpine .ag-filter-toolpanel-header,

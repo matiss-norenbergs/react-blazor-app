@@ -3,6 +3,7 @@
 
     font-family: var(--font-family);
     color: var(--typography-color) !important;
+    transition: var(--animate-colors);
 
     &.dark-theme {
         --typography-color: var(--dark-theme-color);

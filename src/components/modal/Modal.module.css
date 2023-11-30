@@ -13,6 +13,7 @@
     background: var(--modal-background);
     color: var(--modal-color);
     border: 1px solid var(--modal-border-color);
+    transition: var(--animate-colors);
 
     .modal-header {
         user-select: none;

@@ -3,10 +3,11 @@
 :root {
     --white: #fff;
     --lightest-grey: #ddd;
-    --lighter-grey: #666;
-    --light-grey: #555;
-    --grey: #444;
-    --dark-grey: #333;
+    --lighter-grey: #777;
+    --light-grey: #666;
+    --grey: #555;
+    --dark-grey: #444;
+    --darker-grey: #333;
     --darkest-grey: #222;
     --black: #000;
     --prime-blue: #1476ff;
@@ -14,6 +15,12 @@
     --red: #cc0000;
     --red-rgb: 204, 0, 0;
     --dark-red: #990000;
+
+    --active-theme-background: var(--white);
+    --active-theme-background-2: var(--lightest-grey);
+    --active-theme-color: var(--black);
+    --active-theme-primary: var(--prime-blue);
+    --active-theme-primary-rgb: var(--prime-blue-rgb);
 
     /* Light */
     --light-theme-background: var(--white);
@@ -24,7 +31,7 @@
 
     /* Dark */
     --dark-theme-background: var(--darkest-grey);
-    --dark-theme-background-2: var(--dark-grey);
+    --dark-theme-background-2: var(--darker-grey);
     --dark-theme-color: var(--white);
     --dark-theme-primary: var(--red);
     --dark-theme-primary-rgb: var(--red-rgb);
@@ -45,6 +52,9 @@
     --header-side-width: 12rem;
     --footer-height: 0rem;
 
+    --max-content-height: calc(100vh - var(--header-height) - 4rem);
+    --animate-colors: background .3s, color .3s;
+
     @media (max-width: 600px) {
         --view-side-padding: 1rem;
     }
@@ -55,4 +65,26 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-family);
+}
+
+html *::-webkit-scrollbar{
+    width: 9px;
+}
+
+html *::-webkit-scrollbar-track{
+    background: rgba(0, 0, 0, 0.08);
+}
+
+html *::-webkit-scrollbar-thumb{
+    background: rgba(160, 160, 160, 0.5);
+}
+
+html *::-webkit-scrollbar-thumb:hover{
+    background: rgba(150, 150, 150, 0.4)
+}
+
+body {
+    &.test {
+        --light-theme-background: red;
+    }
 }

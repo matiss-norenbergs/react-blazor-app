@@ -80,6 +80,10 @@ const ThemeSelect = ({
         }
     }, [theme, handleThemeModalSaveClick])
 
+    useEffect(() => {
+        document.body.className = theme
+    }, [theme])
+
     const themeOptionStyles = classNames(
         className,
         styles["theme-option"]
