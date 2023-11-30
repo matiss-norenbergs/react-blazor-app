@@ -19,6 +19,7 @@
     .header-logo {
         margin-right: 1rem;
         height: 48px;
+        filter: opacity(.5) drop-shadow(0 0 0 var(--header-primary)) brightness(300%);
 
         @media (max-width: 480px) {
             height: 40px;
@@ -106,19 +107,11 @@
         --header-background: var(--dark-theme-background-2);
         --header-color: var(--dark-theme-color);
         --header-primary: var(--dark-theme-primary);
-
-        .header-logo {
-            filter: opacity(.5) drop-shadow(0 0 0 white) brightness(300%);
-        }
     }
 
     &.custom-theme {
         --header-background: var(--custom-theme-background-2);
         --header-color: var(--custom-theme-color);
         --header-primary: var(--custom-theme-primary);
-
-        .header-logo {
-            filter: opacity(.5) drop-shadow(0 0 0 var(--header-primary)) brightness(300%);
-        }
     }
 }

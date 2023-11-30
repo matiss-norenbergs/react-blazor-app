@@ -9,8 +9,10 @@
     --dark-grey: #333;
     --darkest-grey: #222;
     --black: #000;
-    --prime-blue: #1677ff;
+    --prime-blue: #1476ff;
+    --prime-blue-rgb: 20, 118, 255;
     --red: #cc0000;
+    --red-rgb: 204, 0, 0;
     --dark-red: #990000;
 
     /* Light */
@@ -18,18 +20,21 @@
     --light-theme-background-2: var(--lightest-grey);
     --light-theme-color: var(--black);
     --light-theme-primary: var(--prime-blue);
+    --light-theme-primary-rgb: var(--prime-blue-rgb);
 
     /* Dark */
     --dark-theme-background: var(--darkest-grey);
     --dark-theme-background-2: var(--dark-grey);
     --dark-theme-color: var(--white);
     --dark-theme-primary: var(--red);
+    --dark-theme-primary-rgb: var(--red-rgb);
 
     /* Custom */
-    --custom-theme-background: var(--darkest-grey);
-    --custom-theme-background-2: var(--dark-grey);
+    --custom-theme-background: var(--black);
+    --custom-theme-background-2: var(--black);
     --custom-theme-color: var(--white);
-    --custom-theme-primary: var(--red);
+    --custom-theme-primary: #66ff00;
+    --custom-theme-primary-rgb: 102, 255, 0;
 
     --font-family: 'Montserrat', sans-serif;
     

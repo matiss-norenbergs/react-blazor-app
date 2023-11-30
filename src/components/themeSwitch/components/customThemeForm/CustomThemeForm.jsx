@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react"
 
 import { localStorageConstants, themes } from "helpers/constants"
+import { hexToRgb } from "helpers/colorHelper"
 
 import InputColor from "components/inputColor"
 
@@ -22,10 +23,15 @@ const CustomThemeForm = forwardRef(({
 
     const save = useCallback(() => {
         return new Promise((resolve, reject) => {
+            const primary = hexToRgb(color4.current?.value)
+            if (!primary)
+                return reject()
+
             localStorage.setItem(localStorageConstants.customTheme.background, color1.current?.value)
             localStorage.setItem(localStorageConstants.customTheme.background2, color2.current?.value)
             localStorage.setItem(localStorageConstants.customTheme.color, color3.current?.value)
             localStorage.setItem(localStorageConstants.customTheme.primary, color4.current?.value)
+            localStorage.setItem(localStorageConstants.customTheme.primaryRgb, `${primary.r}, ${primary.g}, ${primary.b}`)
             
             setActiveTheme(themes.custom)
             resolve()

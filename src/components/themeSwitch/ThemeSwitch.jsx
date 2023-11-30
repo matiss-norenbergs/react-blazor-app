@@ -65,6 +65,7 @@ const ThemeSelect = ({
         setStyle.setProperty("--custom-theme-background-2", localStorage.getItem(localStorageConstants.customTheme.background2))
         setStyle.setProperty("--custom-theme-color", localStorage.getItem(localStorageConstants.customTheme.color))
         setStyle.setProperty("--custom-theme-primary", localStorage.getItem(localStorageConstants.customTheme.primary))
+        setStyle.setProperty("--custom-theme-primary-rgb", localStorage.getItem(localStorageConstants.customTheme.primaryRgb))
     }, [])
 
     useEffect(() => {

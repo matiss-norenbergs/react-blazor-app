@@ -2,8 +2,40 @@ import PropTypes from "prop-types"
 
 import Button from "components/button"
 import Input from "components/input"
+import DataGrid from "components/dataGrid"
 
 import styles from "./Components.module.css"
+
+const columnDefs = [
+    {
+        field: "name"
+    },
+    {
+        field: "surname"
+    }
+]
+const data = [
+    {
+        name: "John",
+        surname: "Cena"
+    },
+    {
+        name: "Jeff",
+        surname: "Price"
+    },
+    {
+        name: "Michael",
+        surname: "Ross"
+    },
+    {
+        name: "Sven",
+        surname: "Right"
+    },
+    {
+        name: "Julie",
+        surname: "Bush"
+    }
+]
 
 const Components = () => {
     return (
@@ -37,6 +69,10 @@ const Components = () => {
             <div>
                 <Input />
             </div>
+            <DataGrid
+                columnDefs={columnDefs}
+                data={data}
+            />
         </div>
     )
 }

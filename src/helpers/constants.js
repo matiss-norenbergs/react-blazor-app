@@ -6,7 +6,8 @@ const localStorageConstants = {
         background: `${appName}-BACKGROUND`,
         background2: `${appName}-BACKGROUND-2`,
         color: `${appName}-COLOR`,
-        primary: `${appName}-PRIMARY`
+        primary: `${appName}-PRIMARY`,
+        primaryRgb: `${appName}-PRIMARY-RGB`
     }
 }
 const themes = {

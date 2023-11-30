@@ -60,16 +60,8 @@
         "fullscreen": false,
         "maximized": true,
         "resizable": true,
-        "visible": false,
         "minHeight": 600,
         "minWidth": 800
-      },
-      {
-        "url": "splashscreen.html",
-        "label": "splashscreen",
-        "center": true,
-        "width": 600,
-        "height": 400
       }
     ]
   }
