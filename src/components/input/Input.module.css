@@ -1,4 +1,36 @@
 .input-wrapper {
-    padding: .3rem;
+    --input-background: var(--light-theme-background);
+    --input-background-2: var(--light-theme-background-2);
+    --input-color: var(--light-theme-color);
+    --input-primary: var(--light-theme-primary);
+    --input-primary-rgb: var(--light-theme-primary-rgb);
+
+    padding: .3rem .5rem;
     font-size: var(--font-size);
+    font-family: var(--font-family);
+    border-radius: var(--border-radius);
+    border-right: 1px solid rgba(var(--input-primary-rgb), .4);
+    border-bottom: 1px solid rgba(var(--input-primary-rgb), .4);
+    background: var(--input-background-2);
+    color: var(--input-color);
+
+    &:focus-visible {
+        outline: rgba(var(--input-primary-rgb), .7) solid 1px;
+    }
+
+    &.dark-theme {
+        --input-background: var(--dark-theme-background);
+        --input-background-2: var(--dark-theme-background-2);
+        --input-color: var(--dark-theme-color);
+        --input-primary: var(--dark-theme-primary);
+        --input-primary-rgb: var(--dark-theme-primary-rgb);
+    }
+
+    &.custom-theme {
+        --input-background: var(--custom-theme-background);
+        --input-background-2: var(--custom-theme-background-2);
+        --input-color: var(--custom-theme-color);
+        --input-primary: var(--custom-theme-primary);
+        --input-primary-rgb: var(--custom-theme-primary-rgb);
+    }
 }

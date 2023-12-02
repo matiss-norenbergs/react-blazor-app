@@ -1,8 +1,8 @@
-import PropTypes from "prop-types"
+//import PropTypes from "prop-types"
 
 import Typography from "components/typography"
 
-import styles from "./Home.module.css"
+//import styles from "./Home.module.css"
 
 const {
     Title,

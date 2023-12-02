@@ -1,5 +1,6 @@
 .input-color {
     --input-color-primary: var(--light-theme-primary);
+    --input-color-primary-rgb: var(--light-theme-primary-rgb);
 
     width: 2rem;
     height: 2rem;
@@ -22,9 +23,11 @@
 
     &.dark-theme {
         --input-color-primary: var(--dark-theme-primary);
+        --input-color-primary-rgb: var(--dark-theme-primary-rgb);
     }
 
     &.custom-theme {
         --input-color-primary: var(--custom-theme-primary);
+        --input-color-primary-rgb: var(--custom-theme-primary-rgb);
     }
 }

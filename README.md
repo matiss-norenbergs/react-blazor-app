@@ -14,6 +14,6 @@
 ### Required .env variables
 ```env
 REACT_APP_MYSQL_USER = root
-REACT_APP_MYSQL_PASSWORD = pasword123
+REACT_APP_MYSQL_PASSWORD = password123
 REACT_APP_MYSQL_PORT = 3307
 ```

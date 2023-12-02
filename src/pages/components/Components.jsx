@@ -1,14 +1,16 @@
-import PropTypes from "prop-types"
+//import PropTypes from "prop-types"
 import { useCallback, useEffect, useRef, useState } from "react"
+
+import { deleteTestData, selectAllTestData } from "helpers/services/testService"
 
 import Button from "components/button"
 import DataGrid from "components/dataGrid"
 import OverlayLoader from "components/overlayLoader"
+import Modal from "components/modal"
+
+import BirthdayForm from "./components/birthdayForm"
 
 import styles from "./Components.module.css"
-import { selectAllTestData } from "helpers/services/testService"
-import Modal from "components/modal"
-import BirthdayForm from "./components/birthdayForm"
 
 const columnDefs = [
     {
@@ -28,14 +30,13 @@ const columnDefs = [
 ]
 
 const Components = () => {
-
     const [isDataLoading, setIsDataLoading] = useState(false)
     const [data, setData] = useState([])
     const [selectedRows, setSelectedRows] = useState([])
 
     const birthdayModalRef = useRef(null)
 
-    const isBtnActionDisabled = isDataLoading || selectedRows.length !== 1
+    const isRowSelected = selectedRows.length === 1
 
     const getGridData = useCallback(() => {
         setIsDataLoading(true)
@@ -55,15 +56,28 @@ const Components = () => {
         birthdayModalRef.current?.open()
     }, [])
 
-    const handleDeleteBtnClick = useCallback(() => {
-        setData(prevState => {
-            return prevState.filter(item => item.id !== selectedRows[0].id)
-        })
+    const handleEditBtnClick = useCallback(() => {
+        if (selectedRows.length !== 1)
+            return
+
+        birthdayModalRef.current?.open({ id: selectedRows[0].id })
     }, [selectedRows])
+
+    const handleDeleteBtnClick = useCallback(() => {
+        if (selectedRows.length !== 1)
+            return
+
+        deleteTestData(selectedRows[0].id)
+            .then(() => {
+                getGridData()
+            })
+    }, [selectedRows, getGridData])
 
     useEffect(() => {
         getGridData()
     }, [getGridData])
+
+    const isBtnActionDisabled = isDataLoading || !isRowSelected
 
     const toolbar = (
         <>
@@ -77,6 +91,7 @@ const Components = () => {
                 </Button>
                 <Button
                     faIcon="edit"
+                    onClick={handleEditBtnClick}
                     disabled={isBtnActionDisabled}
                 >
                     Edit
@@ -106,7 +121,6 @@ const Components = () => {
                 columnDefs={columnDefs}
                 data={data}
                 getSelectedRows={getSelectedRows}
-                bulkOperationMode
             />
             <Modal
                 ref={birthdayModalRef}

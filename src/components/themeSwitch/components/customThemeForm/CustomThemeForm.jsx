@@ -1,26 +1,29 @@
 import PropTypes from "prop-types"
-import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from "react"
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo } from "react"
 
 import { localStorageConstants, themes } from "helpers/constants"
 import { hexToRgb } from "helpers/colorHelper"
+import { getStyleProperty } from "helpers/domStyleHelper"
 
 import InputColor from "components/inputColor"
+import Form from "components/form"
 
-import styles from "./CustomThemeForm.module.css"
-import { getStyleProperty } from "helpers/domStyleHelper"
+//import styles from "./CustomThemeForm.module.css"
 
 const propTypes = {
     setActiveTheme: PropTypes.func.isRequired
 }
 const defaultProps = {}
 
+const formItemLayout = {
+    labelCol: { span: 12 },
+    wrapperCol: { span: 12 }
+}
+
 const CustomThemeForm = forwardRef(({
     setActiveTheme
 }, ref) => {
-    const color1 = useRef(null)
-    const color2 = useRef(null)
-    const color3 = useRef(null)
-    const color4 = useRef(null)
+    const [form] = Form.useForm()
 
     const defaultCustomColors = useMemo(() => {
         return {
@@ -33,64 +36,67 @@ const CustomThemeForm = forwardRef(({
 
     const save = useCallback(() => {
         return new Promise((resolve, reject) => {
-            const primary = hexToRgb(color4.current?.value)
-            if (!primary)
-                return reject()
+            form.validateFields()
+                .then(values => {
+                    const primary = hexToRgb(values?.primary)
+                    if (!primary)
+                        return reject()
 
-            localStorage.setItem(localStorageConstants.customTheme.background, color1.current?.value)
-            localStorage.setItem(localStorageConstants.customTheme.background2, color2.current?.value)
-            localStorage.setItem(localStorageConstants.customTheme.color, color3.current?.value)
-            localStorage.setItem(localStorageConstants.customTheme.primary, color4.current?.value)
-            localStorage.setItem(localStorageConstants.customTheme.primaryRgb, `${primary.r}, ${primary.g}, ${primary.b}`)
-            
-            setActiveTheme(themes.custom)
-            resolve()
+                    localStorage.setItem(localStorageConstants.customTheme.background, values?.background)
+                    localStorage.setItem(localStorageConstants.customTheme.background2, values?.background2)
+                    localStorage.setItem(localStorageConstants.customTheme.color, values?.color)
+                    localStorage.setItem(localStorageConstants.customTheme.primary, values?.primary)
+                    localStorage.setItem(localStorageConstants.customTheme.primaryRgb, `${primary.r}, ${primary.g}, ${primary.b}`)
+                    
+                    setActiveTheme(themes.custom)
+                    resolve()
+                })
         })
-    }, [setActiveTheme])
+    }, [form, setActiveTheme])
 
     useImperativeHandle(ref, () => ({
         save: save
     }), [save])
 
+    useEffect(() => {
+        form.setFieldsValue({
+            background: defaultCustomColors.background,
+            background2: defaultCustomColors.background2,
+            color: defaultCustomColors.color,
+            primary: defaultCustomColors.primary
+        })
+    }, [form, defaultCustomColors])
+
     return (
-        <div className={styles["custom-color-table"]}>
-            <div className={styles["custom-color-item"]}>
-                <label className={styles["custom-color-item-label"]}>
-                    {"Background:"}
-                </label>
-                <InputColor
-                    ref={color1}
-                    defaultValue={defaultCustomColors.background}
-                />
-            </div>
-            <div className={styles["custom-color-item"]}>
-                <label className={styles["custom-color-item-label"]}>
-                    {"Background (secondary):"}
-                </label>
-                <InputColor
-                    ref={color2}
-                    defaultValue={defaultCustomColors.background2}
-                />
-            </div>
-            <div className={styles["custom-color-item"]}>
-                <label className={styles["custom-color-item-label"]}>
-                    {"Text color:"}
-                </label>
-                <InputColor
-                    ref={color3}
-                    defaultValue={defaultCustomColors.color}
-                />
-            </div>
-            <div className={styles["custom-color-item"]}>
-                <label className={styles["custom-color-item-label"]}>
-                    {"Primary color:"}
-                </label>
-                <InputColor
-                    ref={color4}
-                    defaultValue={defaultCustomColors.primary}
-                />
-            </div>
-        </div>
+        <Form
+            form={form}
+            {...formItemLayout}
+        >
+            <Form.Item
+                label="Background"
+                name="background"
+            >
+                <InputColor />
+            </Form.Item>
+            <Form.Item
+                label="Background (secondary)"
+                name="background2"
+            >
+                <InputColor />
+            </Form.Item>
+            <Form.Item
+                label="Color"
+                name="color"
+            >
+                <InputColor />
+            </Form.Item>
+            <Form.Item
+                label="Primary"
+                name="primary"
+            >
+                <InputColor />
+            </Form.Item>
+        </Form>
     )
 })
 CustomThemeForm.propTypes = propTypes

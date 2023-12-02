@@ -1,0 +1,22 @@
+.form-wrapper {
+    --form-color: var(--light-theme-color);
+
+    :global(.ant-form-item) {
+        :global(.ant-form-item-label, .ant-form-item-required) {
+            color: var(--form-color) !important;
+        }
+        
+        :global(.ant-form-item-label > label) {
+            color: var(--form-color) !important;
+        }
+    }
+
+
+    &.dark-theme {
+        --form-color: var(--dark-theme-color);
+    }
+
+    &.custom-theme {
+        --form-color: var(--custom-theme-color);
+    }
+}

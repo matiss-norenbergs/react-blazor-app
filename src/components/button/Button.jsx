@@ -35,7 +35,6 @@ const Button = ({
     faIcon,
     ...rest
 }) => {
-
     const { theme } = useContext(ThemeContext)
 
     const buttonIcon = faIcon ? (
@@ -70,7 +69,6 @@ Button.propTypes = propTypes
 Button.defaultProps = defaultProps
 
 const Group = ({ children }) => {
-
     return (
         <div className={styles["button-group"]}>
             {children}

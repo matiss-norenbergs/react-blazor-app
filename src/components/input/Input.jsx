@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import classNames from "classnames"
-import { forwardRef, useCallback, useContext, useEffect, useImperativeHandle, useRef, useState } from "react"
+import { forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState } from "react"
 
 import ThemeContext from "components/themeContext"
 
@@ -20,9 +20,9 @@ const Input = forwardRef(({
     const { theme } = useContext(ThemeContext)
     const inputColorElementRef = useRef(null)
 
-    const handleInputChange = useCallback((e) => {
-        setInputValue(e.target.value)
-    }, [])
+    // const handleInputChange = useCallback((e) => {
+    //     setInputValue(e.target.value)
+    // }, [])
 
     useImperativeHandle(ref, () => ({
         value: inputValue
@@ -31,6 +31,7 @@ const Input = forwardRef(({
     useEffect(() => {
         setInputValue(rest.defaultValue)
     }, [rest.defaultValue])
+    
     return (
         <input
             ref={inputColorElementRef}
@@ -39,8 +40,6 @@ const Input = forwardRef(({
                 styles[theme],
                 className
             )}
-            defaultValue={inputValue}
-            onBlur={handleInputChange}
             {...rest}
         />
     )

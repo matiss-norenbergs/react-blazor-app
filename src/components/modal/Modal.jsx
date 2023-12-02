@@ -32,7 +32,7 @@ const propTypes = {
 }
 const defaultProps = {
     open: false,
-    width: 450,
+    width: 500,
     confirmText: "Confirm",
     cancelText: "Cancel"
 }
@@ -47,17 +47,25 @@ const Modal = forwardRef(({
     component
 }, ref) => {
     const [isComponentMounted, setIsComponentMounted] = useState(false)
+    const [componentProps, setComponentProps] = useState({})
 
     const { theme } = useContext(ThemeContext)
     const modalElementRef = useRef(null)
     const modalComponentRef = useRef(null)
 
-    const handleOpenClick = useCallback(() => {
+    const handleOpenClick = useCallback((passedProps) => {
+        if (passedProps) {
+            setComponentProps(prevState => {
+                return Object.assign(prevState, passedProps)
+            })
+        }
+
         setIsComponentMounted(true)
         modalElementRef.current?.showModal()
     }, [])
 
     const handleCloseClick = useCallback(() => {
+        setComponentProps({})
         setIsComponentMounted(false)
         modalElementRef.current?.close()
     }, [])
@@ -94,7 +102,8 @@ const Modal = forwardRef(({
     const modalComponent = isComponentMounted ? cloneElement(
         component,
         {
-            ref: modalComponentRef
+            ref: modalComponentRef,
+            ...componentProps
         }
     ) : null
 

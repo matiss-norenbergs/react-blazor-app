@@ -1,6 +1,6 @@
 .button-wrapper {
     --button-border: 1px;
-    --button-background: var(--light-theme-background-2);
+    --button-background: var(--light-theme-background);
     --button-color: var(--light-theme-color);
     --button-primary: var(--light-theme-primary);
     --button-brightness-disabled: 80%;
@@ -32,19 +32,20 @@
         color: var(--white);
         
         &:not(.button-disabled):hover {
+            cursor: pointer;
             filter: brightness(120%);
         }
     }
 
     &.dark-theme {
-        --button-background: var(--dark-theme-background-2);
+        --button-background: var(--dark-theme-background);
         --button-color: var(--dark-theme-color);
         --button-primary: var(--dark-theme-primary);
         --button-brightness-disabled: 60%;
     }
 
     &.custom-theme {
-        --button-background: var(--custom-theme-background-2);
+        --button-background: var(--custom-theme-background);
         --button-color: var(--custom-theme-color);
         --button-primary: var(--custom-theme-primary);
     }
