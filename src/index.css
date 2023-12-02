@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 :root {
     --white: #fff;
@@ -16,12 +16,6 @@
     --red-rgb: 204, 0, 0;
     --dark-red: #990000;
 
-    --active-theme-background: var(--white);
-    --active-theme-background-2: var(--lightest-grey);
-    --active-theme-color: var(--black);
-    --active-theme-primary: var(--prime-blue);
-    --active-theme-primary-rgb: var(--prime-blue-rgb);
-
     /* Light */
     --light-theme-background: var(--white);
     --light-theme-background-2: var(--lightest-grey);
@@ -30,17 +24,18 @@
     --light-theme-primary-rgb: var(--prime-blue-rgb);
 
     /* Dark */
-    --dark-theme-background: var(--darkest-grey);
-    --dark-theme-background-2: var(--darker-grey);
+    --dark-theme-background: #141414;
+    --dark-theme-background-2: #0f0f0f;
     --dark-theme-color: var(--white);
     --dark-theme-primary: var(--red);
     --dark-theme-primary-rgb: var(--red-rgb);
 
     /* Custom */
-    --custom-theme-background: var(--black);
-    --custom-theme-background-2: var(--black);
+    --custom-theme-background: #141414;
+    --custom-theme-background-2: #0f0f0f;
     --custom-theme-color: var(--white);
-    --custom-theme-primary: #66ff00;
+    /* --custom-theme-primary: #66ff00; */
+    --custom-theme-primary: #00ffbf;
     --custom-theme-primary-rgb: 102, 255, 0;
 
     --font-family: 'Montserrat', sans-serif;
@@ -81,10 +76,4 @@ html *::-webkit-scrollbar-thumb{
 
 html *::-webkit-scrollbar-thumb:hover{
     background: rgba(150, 150, 150, 0.4)
-}
-
-body {
-    &.test {
-        --light-theme-background: red;
-    }
 }

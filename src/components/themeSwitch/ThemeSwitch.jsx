@@ -3,6 +3,7 @@ import classNames from "classnames"
 import { useCallback, useContext, useEffect, useRef } from "react"
 
 import { localStorageConstants, themes } from "helpers/constants"
+import { setStyleProperty } from "helpers/domStyleHelper"
 import useThemeDetector from "hooks/useThemeDetector"
 
 import ThemeContext from "../themeContext"
@@ -18,8 +19,6 @@ const propTypes = {
     useThemeSelector: PropTypes.bool,
     useSideNavigation: PropTypes.bool
 }
-
-const setStyle = document.querySelector(":root").style
 
 const ThemeSelect = ({
     className,
@@ -61,11 +60,11 @@ const ThemeSelect = ({
     }, [])
 
     const handleThemeModalSaveClick = useCallback(() => {
-        setStyle.setProperty("--custom-theme-background", localStorage.getItem(localStorageConstants.customTheme.background))
-        setStyle.setProperty("--custom-theme-background-2", localStorage.getItem(localStorageConstants.customTheme.background2))
-        setStyle.setProperty("--custom-theme-color", localStorage.getItem(localStorageConstants.customTheme.color))
-        setStyle.setProperty("--custom-theme-primary", localStorage.getItem(localStorageConstants.customTheme.primary))
-        setStyle.setProperty("--custom-theme-primary-rgb", localStorage.getItem(localStorageConstants.customTheme.primaryRgb))
+        setStyleProperty("--custom-theme-background", localStorage.getItem(localStorageConstants.customTheme.background))
+        setStyleProperty("--custom-theme-background-2", localStorage.getItem(localStorageConstants.customTheme.background2))
+        setStyleProperty("--custom-theme-color", localStorage.getItem(localStorageConstants.customTheme.color))
+        setStyleProperty("--custom-theme-primary", localStorage.getItem(localStorageConstants.customTheme.primary))
+        setStyleProperty("--custom-theme-primary-rgb", localStorage.getItem(localStorageConstants.customTheme.primaryRgb))
     }, [])
 
     useEffect(() => {

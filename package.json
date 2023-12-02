@@ -17,10 +17,12 @@
     "ag-grid-react": "^30.2.1",
     "antd": "^5.11.2",
     "classnames": "^2.3.2",
+    "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
+    "tauri-plugin-sql-api": "github:tauri-apps/tauri-plugin-sql#v1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

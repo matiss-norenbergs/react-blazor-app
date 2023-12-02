@@ -1,0 +1,14 @@
+.empty-wrapper {
+    display: grid;
+    grid-auto-flow: row;
+    gap: .5rem;
+    opacity: .6;
+
+    .empty-icon {
+        font-size: 3.5rem;
+    }
+
+    .empty-text {
+        font-size: var(--font-size);
+    }
+}

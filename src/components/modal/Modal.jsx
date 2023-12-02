@@ -127,7 +127,9 @@ const Modal = forwardRef(({
             <footer className={styles["modal-footer"]}>
                 <div className={styles["modal-footer-buttons"]}>
                     {cancelText !== false && (
-                        <Button>
+                        <Button
+                            onClick={handleCloseClick}
+                        >
                             {cancelText}
                         </Button>
                     )}

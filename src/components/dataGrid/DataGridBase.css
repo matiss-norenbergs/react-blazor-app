@@ -351,6 +351,9 @@
     --ag-advanced-filter-column-pill-color: #a6e194;
     --ag-advanced-filter-option-pill-color: #f3c08b;
     --ag-advanced-filter-value-pill-color: #85c0e4;
+
+    /* --ag-icon-font-code-checkbox-unchecked: ""; */
+    /* --ag-icon-font-code-checkbox-checked: "\2713"; */
   }
   
   .ag-root-wrapper, .ag-sticky-top, .ag-dnd-ghost {

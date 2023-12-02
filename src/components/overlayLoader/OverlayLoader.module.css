@@ -1,0 +1,28 @@
+.overlay-loader-wrapper {
+    --overlay-color: var(--light-theme-color);
+
+    position: relative;
+
+    .overlay-loader-content {
+        user-select: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.2);
+        color: var(--overlay-color);
+    }
+
+    &.dark-theme {
+        --overlay-color: var(--dark-theme-color);
+    }
+
+    &.custom-theme {
+        --overlay-color: var(--custom-theme-color);
+    }
+}

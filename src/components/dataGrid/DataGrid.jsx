@@ -5,9 +5,13 @@ import { useCallback, useContext, useRef } from "react"
 import { AgGridReact } from "ag-grid-react"
 
 import ThemeContext from "../themeContext"
+import Empty from "../empty"
 
 import "./DataGridBase.css"
 import styles from "./DataGrid.module.css"
+
+// import "ag-grid-community/styles/ag-grid.css"
+// import "ag-grid-community/styles/ag-theme-alpine.css"
 
 const propTypes = {
     columnDefs: PropTypes.array,
@@ -46,10 +50,12 @@ const DataGrid = ({
             className={classNames(
                 styles["data-grid-wrapper"],
                 styles["ag-theme-alpine"],
-                styles[theme]
+                styles[theme],
+                "ag-theme-alpine"
             )}
             style={{
-                width: width
+                width: width,
+                height: 500
             }}
         >
             {!!toolbar && (
@@ -65,6 +71,7 @@ const DataGrid = ({
                 rowHeight={24}
                 rowSelection={bulkOperationMode ? "multiple" : "single"}
                 onSelectionChanged={onSelectionChanged}
+                noRowsOverlayComponent={Empty}
             />
         </div>
     )

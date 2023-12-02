@@ -1,276 +1,122 @@
 import PropTypes from "prop-types"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 import Button from "components/button"
 import DataGrid from "components/dataGrid"
+import OverlayLoader from "components/overlayLoader"
 
 import styles from "./Components.module.css"
+import { selectAllTestData } from "helpers/services/testService"
+import Modal from "components/modal"
+import BirthdayForm from "./components/birthdayForm"
 
 const columnDefs = [
     {
-        field: "name"
+        headerClass: styles["header"],
+        field: "select",
+        checkboxSelection: true,
+        width: 60
     },
     {
-        field: "surname"
+        field: "name",
+        // headerName: ""
+    },
+    {
+        field: "surname",
+        // headerName: ""
     }
-]
-const tmpData = [
-    {
-        id: "1",
-        name: "John",
-        surname: "Cena"
-    },
-    {
-        id: "2",
-        name: "Jeff",
-        surname: "Price"
-    },
-    {
-        id: "3",
-        name: "Michael",
-        surname: "Ross"
-    },
-    // {
-    //     id: "4",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "5",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "6",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "7",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "8",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "9",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "10",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "11",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "12",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "13",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "14",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "15",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "16",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "17",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "18",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "19",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "20",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "01",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "02",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "03",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "04",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "05",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "06",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "07",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "08",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "09",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "010",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "011",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "012",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "013",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "014",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "015",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
-    // {
-    //     id: "016",
-    //     name: "John",
-    //     surname: "Cena"
-    // },
-    // {
-    //     id: "017",
-    //     name: "Jeff",
-    //     surname: "Price"
-    // },
-    // {
-    //     id: "018",
-    //     name: "Michael",
-    //     surname: "Ross"
-    // },
-    // {
-    //     id: "019",
-    //     name: "Sven",
-    //     surname: "Right"
-    // },
-    // {
-    //     id: "020",
-    //     name: "Julie",
-    //     surname: "Bush"
-    // },
 ]
 
 const Components = () => {
 
-    const [data, setData] = useState(tmpData)
+    const [isDataLoading, setIsDataLoading] = useState(false)
+    const [data, setData] = useState([])
     const [selectedRows, setSelectedRows] = useState([])
+
+    const birthdayModalRef = useRef(null)
+
+    const isBtnActionDisabled = isDataLoading || selectedRows.length !== 1
+
+    const getGridData = useCallback(() => {
+        setIsDataLoading(true)
+
+        selectAllTestData()
+            .then(data => {
+                setData(data)
+                setIsDataLoading(false)
+            })
+    }, [])
 
     const getSelectedRows = useCallback((newRows) => {
         setSelectedRows(newRows)
     }, [])
 
-    const createNewData = useCallback(() => {
-        const newObj = {
-            id: "test",
-            name: "Audi",
-            surname: "A6"
-        }
-
-        setData(prevState => {
-            return [...prevState, newObj]
-        })
+    const handleCreateBtnClick = useCallback(() => {
+        birthdayModalRef.current?.open()
     }, [])
 
-    const isBtnActionDisabled = selectedRows.length !== 1
+    const handleDeleteBtnClick = useCallback(() => {
+        setData(prevState => {
+            return prevState.filter(item => item.id !== selectedRows[0].id)
+        })
+    }, [selectedRows])
+
+    useEffect(() => {
+        getGridData()
+    }, [getGridData])
 
     const toolbar = (
-        <Button.Group>
+        <>
+            <Button.Group>
+                <Button
+                    type="primary"
+                    faIcon="plus"
+                    onClick={handleCreateBtnClick}
+                >
+                    Create
+                </Button>
+                <Button
+                    faIcon="edit"
+                    disabled={isBtnActionDisabled}
+                >
+                    Edit
+                </Button>
+                <Button
+                    faIcon="trash-alt"
+                    onClick={handleDeleteBtnClick}
+                    disabled={isBtnActionDisabled}
+                >
+                    Delete
+                </Button>
+            </Button.Group>
             <Button
-                type="primary"
-                faIcon="plus"
-                onClick={createNewData}
+                faIcon="sync"
+                onClick={getGridData}
+                disabled={isDataLoading}
             >
-                Create
+                Get data
             </Button>
-            <Button
-                faIcon="edit"
-                disabled={isBtnActionDisabled}
-            >
-                Edit
-            </Button>
-            <Button
-                faIcon="trash-alt"
-                disabled={isBtnActionDisabled}
-            >
-                Delete
-            </Button>
-        </Button.Group>
+        </>
     )
 
     return (
-        <DataGrid
-            toolbar={toolbar}
-            columnDefs={columnDefs}
-            data={data}
-            getSelectedRows={getSelectedRows}
-        />
+        <OverlayLoader isLoading={isDataLoading}>
+            <DataGrid
+                toolbar={toolbar}
+                columnDefs={columnDefs}
+                data={data}
+                getSelectedRows={getSelectedRows}
+                bulkOperationMode
+            />
+            <Modal
+                ref={birthdayModalRef}
+                title="Birthday create"
+                component={
+                    <BirthdayForm />
+                }
+                onConfirm={getGridData}
+            />
+        </OverlayLoader>
     )
 }
 
