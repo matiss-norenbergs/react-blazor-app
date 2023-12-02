@@ -19,11 +19,11 @@ const columnDefs = [
     },
     {
         field: "name",
-        // headerName: ""
+        headerName: "Name"
     },
     {
         field: "surname",
-        // headerName: ""
+        headerName: "Surname"
     }
 ]
 

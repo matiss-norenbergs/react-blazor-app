@@ -1,6 +1,19 @@
-# React app for messing around
+# Desktop React app (no specific name yet 🤷‍♂️)
 
-## Using
-### * React
-### * Blazor
-### * Tauri
+<img src="https://github.com/matiss-norenbergs/react-blazor-app/blob/main/src/assets/images/mnIcon.svg" alt="" width="150" />
+
+### Description
+...what ever comes to mind
+
+### Used tech
+- React
+- Blazor
+- Tauri
+- MySQL
+
+### Required .env variables
+```env
+REACT_APP_MYSQL_USER = root
+REACT_APP_MYSQL_PASSWORD = pasword123
+REACT_APP_MYSQL_PORT = 3307
+```

@@ -1,8 +1,6 @@
 import Database from "tauri-plugin-sql-api"
 
-// const db = await Database.load("mysql://user:pass@host/database")
-
-const connectionName = "mysql://root:Parole1@localhost:3307/react"
+const connectionName = `mysql://${process.env.REACT_APP_MYSQL_USER}:${process.env.REACT_APP_MYSQL_PASSWORD}@localhost:${process.env.REACT_APP_MYSQL_PORT}/react`
 
 const insertTestData = async (birthday) => {
     const db = await Database.load(connectionName)
